@@ -163,7 +163,7 @@ TREATMENT_INFO = {
 
 # Define the pretrained model class (same as your training script)
 class PretrainedModel(nn.Module):
-    def __init__(self, num_classes, model_name='mobilenet_v3_small_epoch_20.pth', pretrained=False):
+    def __init__(self, num_classes, model_name='mobilenet_v3_small_epoch_25.pth', pretrained=False):
         super(PretrainedModel, self).__init__()
         
         if model_name == 'mobilenet_v3_small':
