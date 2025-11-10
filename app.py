@@ -41,7 +41,7 @@ def load_model():
     model = PretrainedModel(num_classes=len(DISEASE_CLASSES), model_name='mobilenet_v3_small', pretrained=False)
     
     # Load the trained weights
-    model.load_state_dict(torch.load('pretrained_model/mobilenet_v3_small_epoch_5.pth', map_location=device))
+    model.load_state_dict(torch.load('mobilenet_v3_small_epoch_5.pth', map_location=device))
     model.to(device)
     model.eval()
     return model, device
