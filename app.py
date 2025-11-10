@@ -4,6 +4,7 @@ import torch.nn as nn
 from torchvision import transforms, models
 from PIL import Image
 import numpy as np
+import base64
 
 # Disease classes
 DISEASE_CLASSES = {
@@ -161,9 +162,18 @@ TREATMENT_INFO = {
     }
 }
 
+# Function to convert image to base64
+def get_base64_image(image_path):
+    """Convert image to base64 string"""
+    try:
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    except:
+        return None
+
 # Define the pretrained model class (same as your training script)
 class PretrainedModel(nn.Module):
-    def __init__(self, num_classes, model_name='mobilenet_v3_small_epoch_25.pth', pretrained=False):
+    def __init__(self, num_classes, model_name='mobilenet_v3_small', pretrained=False):
         super(PretrainedModel, self).__init__()
         
         if model_name == 'mobilenet_v3_small':
@@ -183,7 +193,7 @@ def load_model():
     model = PretrainedModel(num_classes=len(DISEASE_CLASSES), model_name='mobilenet_v3_small', pretrained=False)
     
     # Load the trained weights
-    model.load_state_dict(torch.load('mobilenet_v3_small_epoch_25.pth', map_location=device))
+    model.load_state_dict(torch.load('pretrained_model/mobilenet_v3_small_epoch_5.pth', map_location=device))
     model.to(device)
     model.eval()
     return model, device
@@ -228,42 +238,87 @@ def main():
         initial_sidebar_state="expanded"
     )
     
-    # Custom CSS
-    st.markdown("""
+    # Get background image as base64
+    bg_image = get_base64_image("cashew2.jpg")
+    
+    # Custom CSS with background image
+    background_style = ""
+    if bg_image:
+        background_style = f"""
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{bg_image}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }}
+        """
+    
+    st.markdown(f"""
         <style>
-        .main-header {
+        {background_style}
+        .main-header {{
             font-size: 3rem;
             color: #2E7D32;
             text-align: center;
             margin-bottom: 1rem;
-        }
-        .sub-header {
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }}
+        .sub-header {{
             font-size: 1.2rem;
-            color: #666;
+            color: #333;
             text-align: center;
             margin-bottom: 2rem;
-        }
-        .prediction-box {
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }}
+        .prediction-box {{
             padding: 20px;
             border-radius: 10px;
-            background-color: #f0f2f6;
+            background-color: rgba(240, 242, 246, 0.95);
             margin: 10px 0;
-        }
-        .healthy {
-            background-color: #d4edda;
+            backdrop-filter: blur(5px);
+        }}
+        .healthy {{
+            background-color: rgba(212, 237, 218, 0.95);
             color: #155724;
-        }
-        .disease {
-            background-color: #f8d7da;
+        }}
+        .disease {{
+            background-color: rgba(248, 215, 218, 0.95);
             color: #721c24;
-        }
-        .treatment-section {
-            background-color: #e8f5e9;
+        }}
+        .treatment-section {{
+            background-color: rgba(232, 245, 233, 0.95);
             padding: 20px;
             border-radius: 10px;
             border-left: 5px solid #4caf50;
             margin: 20px 0;
-        }
+            backdrop-filter: blur(5px);
+        }}
+        .stSidebar {{
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }}
+        div[data-testid="stExpander"] {{
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+        }}
+        .element-container {{
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }}
         </style>
     """, unsafe_allow_html=True)
     
@@ -360,7 +415,7 @@ def main():
                         st.markdown(f'<div class="prediction-box healthy">', unsafe_allow_html=True)
                         st.markdown(f"### ✅ Prediction: **{disease_name}**")
                     elif disease_name == "Not Cashew":
-                        st.markdown(f'<div class="prediction-box" style="background-color: #fff3cd; color: #856404;">', unsafe_allow_html=True)
+                        st.markdown(f'<div class="prediction-box" style="background-color: rgba(255, 243, 205, 0.95); color: #856404;">', unsafe_allow_html=True)
                         st.markdown(f"### ⚠️ Prediction: **{disease_name}**")
                     else:
                         st.markdown(f'<div class="prediction-box disease">', unsafe_allow_html=True)
@@ -490,8 +545,8 @@ def main():
     st.markdown("---")
     st.markdown(
         """
-        <div style='text-align: center; color: #666; padding: 20px;'>
-            <p>🌍 Developed with ❤️ for Sustainable Cashew Farming | Powered by MobileNet V3 Small</p>
+        <div style='text-align: center; color: #333; padding: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);'>
+            <p><strong>🌍 Developed with ❤️ for Sustainable Cashew Farming | Powered by MobileNet V3 Small</strong></p>
             <p><em>For educational and research purposes | Always consult local agricultural experts for severe cases</em></p>
         </div>
         """,
