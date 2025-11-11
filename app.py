@@ -377,7 +377,7 @@ def main():
     # Load model
     try:
         model, device = load_model()
-        st.success("✅ Model loaded successfully!")
+        #st.success("✅ Model loaded successfully!")
     except Exception as e:
         st.error(f"❌ Error loading model: {str(e)}")
         st.stop()
