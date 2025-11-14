@@ -547,7 +547,7 @@ def main():
     st.markdown(
         """
         <div style='text-align: center; color: #333; padding: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);'>
-            <p><strong>🌍 Developed by Uenr-ATPS | Powered by MobileNet V3 Small and IDRC Grant</strong></p>
+            <p><strong>🌍 Developed by UENR-AI4AFS | Powered by ATPS/IDRC Grant</strong></p>
             <p><em>For educational and research purposes | Always consult local agricultural experts for severe cases</em></p>
         </div>
         """,
