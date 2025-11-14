@@ -241,83 +241,93 @@ def main():
     # Get background image as base64
     bg_image = get_base64_image("cashew2.jpg")
     
-    # Custom CSS with background image
+    # Custom CSS with background image - FIXED VERSION
     background_style = ""
     if bg_image:
         background_style = f"""
         .stApp {{
-            background-image: url("data:image/jpg;base64,{bg_image}");
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                url("data:image/jpg;base64,{bg_image}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-        }}
-        .stApp::before {{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.85);
-            z-index: -1;
         }}
         """
     
     st.markdown(f"""
         <style>
         {background_style}
+        
         .main-header {{
             font-size: 3rem;
             color: #2E7D32;
             text-align: center;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.9);
+            font-weight: bold;
         }}
         .sub-header {{
             font-size: 1.2rem;
-            color: #333;
+            color: #1a1a1a;
             text-align: center;
             margin-bottom: 2rem;
-            font-weight: 500;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.9);
         }}
+        
+        /* Make text more readable on faded background */
+        .stMarkdown, p, li, span {{
+            text-shadow: 0px 0px 2px rgba(255,255,255,0.8);
+        }}
+        
+        /* File uploader - keep some styling for visibility */
+        div[data-testid="stFileUploader"] {{
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px dashed #4caf50;
+            backdrop-filter: blur(3px);
+        }}
+        
+        /* Info boxes - keep minimal background for readability */
+        div[data-testid="stAlert"] {{
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(3px);
+        }}
+        
         .prediction-box {{
             padding: 20px;
             border-radius: 10px;
-            background-color: rgba(240, 242, 246, 0.95);
+            background-color: rgba(240, 242, 246, 0.9);
             margin: 10px 0;
             backdrop-filter: blur(5px);
         }}
         .healthy {{
-            background-color: rgba(212, 237, 218, 0.95);
+            background-color: rgba(212, 237, 218, 0.9);
             color: #155724;
         }}
         .disease {{
-            background-color: rgba(248, 215, 218, 0.95);
+            background-color: rgba(248, 215, 218, 0.9);
             color: #721c24;
         }}
         .treatment-section {{
-            background-color: rgba(232, 245, 233, 0.95);
+            background-color: rgba(232, 245, 233, 0.85);
             padding: 20px;
             border-radius: 10px;
             border-left: 5px solid #4caf50;
             margin: 20px 0;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px);
         }}
         .stSidebar {{
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
         }}
         div[data-testid="stExpander"] {{
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 5px;
-        }}
-        .element-container {{
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 10px;
-            border-radius: 5px;
-            margin: 5px 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 8px;
+            backdrop-filter: blur(3px);
         }}
         </style>
     """, unsafe_allow_html=True)
@@ -546,7 +556,7 @@ def main():
     st.markdown(
         """
         <div style='text-align: center; color: #333; padding: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);'>
-            <p><strong>🌍 Developed UENR-ATPS | Powered by MobileNet V3 Small and IDRC Grant</strong></p>
+            <p><strong>🌍 Developed by Uenr-ATPS | Powered by MobileNet V3 Small and IDRC Grant</strong></p>
             <p><em>For educational and research purposes | Always consult local agricultural experts for severe cases</em></p>
         </div>
         """,
