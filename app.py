@@ -341,8 +341,7 @@ def main():
         st.header("About")
         st.info(
             """
-            This app uses a fine-tuned MobileNet V3 Small model to classify 
-            cashew plant diseases from images and provides non-chemical treatment recommendations.
+            This app detects cashew plant pests and diseases from images. It provides enviromentally friendly recommendations to control the pests and diseases.
             
             **Supported Classes:**
             - Anthracnose
@@ -366,15 +365,7 @@ def main():
         4. Read the organic treatment recommendations
         5. Check the probability distribution
         """)
-        
-        st.header("Model Info")
-        st.markdown("""
-        - **Model**: MobileNet V3 Small
-        - **Parameters**: ~1.5M
-        - **Input Size**: 224x224
-        - **Classes**: 10
-        """)
-        
+       
         st.header("🌱 Why Organic?")
         st.success("""
         All treatment recommendations are **non-chemical** and environmentally friendly:
