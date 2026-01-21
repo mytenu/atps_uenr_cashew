@@ -232,7 +232,7 @@ def predict(image, model, device):
 def main():
     # Page configuration
     st.set_page_config(
-        page_title="Cashew Disease Classifie",
+        page_title="Cashew Disease",
         page_icon="🌿",
         layout="wide",
         initial_sidebar_state="expanded"
