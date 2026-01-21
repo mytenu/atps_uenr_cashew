@@ -333,7 +333,7 @@ def main():
     """, unsafe_allow_html=True)
     
     # Header
-    st.markdown('<h1 class="main-header">🌿 Cashew Disease Classifie</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">🌿 Cashew Disease Classifier</h1>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Upload an image of a cashew plant to detect diseases and get treatment recommendations</p>', unsafe_allow_html=True)
     
     # Sidebar
