@@ -293,27 +293,30 @@ def main():
         }}
         
         div[data-testid="stFileUploader"] label {{
-            color: #FFFFFF !important;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            color: #00FF00 !important;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+            font-weight: bold;
         }}
         
         div[data-testid="stFileUploader"] span {{
-            color: #FFFFFF !important;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            color: #00FF00 !important;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+            font-weight: bold;
         }}
         
         div[data-testid="stFileUploader"] small {{
-            color: #FFFFFF !important;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            color: #00FF00 !important;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
         }}
         
         div[data-testid="stFileUploader"] p {{
-            color: #FFFFFF !important;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            color: #00FF00 !important;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+            font-weight: bold;
         }}
         
         div[data-testid="stFileUploader"] div {{
-            color: #FFFFFF !important;
+            color: #00FF00 !important;
         }}
         
         /* Info boxes - keep minimal background for readability */
