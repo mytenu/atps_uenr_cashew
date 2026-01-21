@@ -241,7 +241,7 @@ def main():
     # Get background image as base64
     bg_image = get_base64_image("cashew2.jpg")
     
-    # Custom CSS with background image - FIXED VERSION
+    # Custom CSS with background image - ALL TEXT NOW BLACK
     background_style = ""
     if bg_image:
         background_style = f"""
@@ -262,7 +262,7 @@ def main():
         
         .main-header {{
             font-size: 3rem;
-            color: #2E7D32;
+            color: #000000;
             text-align: center;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(255,255,255,0.9);
@@ -270,15 +270,16 @@ def main():
         }}
         .sub-header {{
             font-size: 1.2rem;
-            color: #1a1a1a;
+            color: #000000;
             text-align: center;
             margin-bottom: 2rem;
             font-weight: 600;
             text-shadow: 1px 1px 3px rgba(255,255,255,0.9);
         }}
         
-        /* Make text more readable on faded background */
-        .stMarkdown, p, li, span {{
+        /* Make all text black and readable on faded background */
+        .stMarkdown, p, li, span, h1, h2, h3, h4, h5, h6, div, label {{
+            color: #000000 !important;
             text-shadow: 0px 0px 2px rgba(255,255,255,0.8);
         }}
         
@@ -291,10 +292,18 @@ def main():
             backdrop-filter: blur(3px);
         }}
         
+        div[data-testid="stFileUploader"] label {{
+            color: #000000 !important;
+        }}
+        
         /* Info boxes - keep minimal background for readability */
         div[data-testid="stAlert"] {{
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(3px);
+        }}
+        
+        div[data-testid="stAlert"] * {{
+            color: #000000 !important;
         }}
         
         .prediction-box {{
@@ -303,14 +312,16 @@ def main():
             background-color: rgba(240, 242, 246, 0.9);
             margin: 10px 0;
             backdrop-filter: blur(5px);
+            color: #000000;
+        }}
+        .prediction-box * {{
+            color: #000000 !important;
         }}
         .healthy {{
             background-color: rgba(212, 237, 218, 0.9);
-            color: #155724;
         }}
         .disease {{
             background-color: rgba(248, 215, 218, 0.9);
-            color: #721c24;
         }}
         .treatment-section {{
             background-color: rgba(232, 245, 233, 0.85);
@@ -320,14 +331,31 @@ def main():
             margin: 20px 0;
             backdrop-filter: blur(3px);
         }}
+        .treatment-section * {{
+            color: #000000 !important;
+        }}
         .stSidebar {{
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+        }}
+        .stSidebar * {{
+            color: #000000 !important;
         }}
         div[data-testid="stExpander"] {{
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 8px;
             backdrop-filter: blur(3px);
+        }}
+        div[data-testid="stExpander"] * {{
+            color: #000000 !important;
+        }}
+        /* Buttons */
+        .stButton button {{
+            color: #000000 !important;
+        }}
+        /* Captions */
+        .stCaptionContainer {{
+            color: #000000 !important;
         }}
         </style>
     """, unsafe_allow_html=True)
@@ -416,7 +444,7 @@ def main():
                         st.markdown(f'<div class="prediction-box healthy">', unsafe_allow_html=True)
                         st.markdown(f"### ✅ Prediction: **{disease_name}**")
                     elif disease_name == "Not Cashew":
-                        st.markdown(f'<div class="prediction-box" style="background-color: rgba(255, 243, 205, 0.95); color: #856404;">', unsafe_allow_html=True)
+                        st.markdown(f'<div class="prediction-box" style="background-color: rgba(255, 243, 205, 0.95);">', unsafe_allow_html=True)
                         st.markdown(f"### ⚠️ Prediction: **{disease_name}**")
                     else:
                         st.markdown(f'<div class="prediction-box disease">', unsafe_allow_html=True)
@@ -546,7 +574,7 @@ def main():
     st.markdown("---")
     st.markdown(
         """
-        <div style='text-align: center; color: #333; padding: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);'>
+        <div style='text-align: center; color: #000000; padding: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);'>
             <p><strong>🌍 Developed by UENR-AI4AFS | Powered by ATPS/IDRC Grant</strong></p>
             <p><em>For educational and research purposes | Always consult local agricultural experts for severe cases</em></p>
         </div>
